@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     const totalDeath = document.getElementById('total_death');
     const totalRecovered = document.getElementById('total_recovered');
     const totalCases = document.getElementById('total_cases');
-    const table = document.getElementById('countries_stat');
+    const table = document.getElementById('countries_stat') as any;
     // Fetching the Data from the server
 
     // Fetching the World Data
@@ -53,8 +53,8 @@ export class AppComponent implements OnInit {
         'x-rapidapi-key': '53009286a0mshdc8ec356f7aa205p1e0e80jsn5858f548ed53'
       }
     })
-      .then(response => response.json().then(data =>{
-        console.log(data)
+      .then(response => response.json().then( (data) => {
+        console.log(data);
         const countriesStat = data.countries_stat;
         // Getting all the country statistic using a loop
         for (let i = 0; i < countriesStat.length; i++) {
