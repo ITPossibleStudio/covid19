@@ -1,14 +1,15 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="!deathData && countryData; else loading">
   <div class="statistic">
 
-    <div class="total_case_box">
+    <div class="total-case-box">
       <h2>Total Cases</h2>
-      <p id="total_cases"></p>
+      <p id="total_cases">{{ deathData.total_cases }}</p>
     </div>
+    countryData {{ countryData.countries_stat[0] | json }}
     <div class="box_wrapper">
       <div class="box">
         <h2>Total Death</h2>
-        <p id="total_death"> </p>
+        <p id="total_death">{{ deathData.total_deaths }}</p>
       </div>
 
       <div class="box">
@@ -26,6 +27,8 @@
         <p id="new_death"> </p>
       </div>
     </div>
+  </div>
+
 
 <!--    <ng-template>-->
       <div class="search">
@@ -43,4 +46,10 @@
       </tr>
     </table>
   </div>
-</div>
+
+<ng-template #loading>
+  <div class="loader">
+    <img src="./../assets/images/covid.jpg" alt="loader" />
+    Load data...
+  </div>
+</ng-template>

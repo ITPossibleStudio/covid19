@@ -14,6 +14,6 @@ export class SearchService {
   }
 
   getCountryData(): Observable<any> {
-    return this.http.get<any>(``);
+    return this.http.get<any>('https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php');
   }
 }
