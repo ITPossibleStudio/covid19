@@ -1,0 +1,42 @@
+//fonts
+$font-main-700: "Ubuntu", sans-serif;
+$font-bold-700: "Ubuntu-Bold", sans-serif;
+$font-light-300: "Ubuntu-Light", sans-serif;
+$font-medium-500: "Ubuntu-Medium", sans-serif;
+$font-regular-400: "Ubuntu-Regular", sans-serif;
+
+//colors
+$black: var(--fontSecondary-color);
+$white: var(--fontPrimary-color);
+$light-red: var(--primary-color);
+$light-grey: var(--secondary-color);
+$dark-red: var(--active-color);
+$hover-color: var(--hover-color);
+
+$white-dark: #f7fafc;
+$dark-grey: #a5a4aa;
+$grey: #909ca9;
+
+$commonBackground: #9da8b3;
+$controlsBackgroundGrey: #f5f7f8;
+$border-grey: #e9ebee;
+
+$border-top: #eaeaea;
+$active-border: #886969;
+
+$sort-wrapper-menu-opened: #ea6e60;
+$button-menu-item-active: #faebe9;
+
+$simpleTextLabelColor: #6c7073;
+
+$mat-row: #ffe7e7;
+$mat-selected-active: #ec8c8c;
+$mat-column-date-now-before: #c74f4f;
+$mat-column-date-now-before-history: #10ad25;
+$mat-row-hover-background: #fdf8f7;
+$mat-outer-circle: #ccced2;
+$mat-checkbox-simple: #d8d8d8;
+
+$table-border: #f6f7f8;
+
+$transition: all ease 0.3s;

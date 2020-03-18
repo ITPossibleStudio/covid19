@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Ubuntu-Bold';
+  src: url('./assets/fonts/Ubuntu-Bold.ttf');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu-Light';
+  src: url('./assets/fonts/Ubuntu-Light.ttf');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu-Medium';
+  src: url('./assets/fonts/Ubuntu-Medium.ttf');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu-Regular';
+  src: url('./assets/fonts/Ubuntu-Regular.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  font-family: 'Ubuntu-Regular', sans-serif;
+}

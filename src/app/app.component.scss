@@ -1,33 +1,27 @@
-*{
-  margin: 0;
-  padding: 0;
-  outline: 0;
-  font-family: 'Nunito',sans-serif;
-}
-body{
-  background-color: #1e88e5;
-}
+@import "./../assets/scss/mixins/mixin-loader";
+
 .wrapper{
-  width: 80%;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.statistic{
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
+
+  .statistic {
+    width: 100%;
+
+    .total-case-box {
+      background-color: #fafafa;
+      box-shadow: 2px 2px 8px rgba(30,30,30,.2);
+      margin: 10px 15px;
+      padding: 15px 0;
+      text-align: center;
+      text-transform: uppercase;
+
+      p {
+        font-size: 3rem;
+      }
+    }
+  }
 }
 
-.total_case_box{
-  background-color: #fafafa;
-  box-shadow: 2px 2px 8px rgba(30,30,30,.2);
-  margin: 10px 15px;
-  padding: 15px 0;
-  text-align: center;
-  text-transform: uppercase;
-}
-.total_case_box p {
-  font-size: 3rem;
-}
 .wrapper .box_wrapper {
   display: flex;
   flex-wrap: nowrap;
@@ -94,4 +88,10 @@ tr:nth-child(odd){
 }
 tr td{
   padding: 15px 0;
+}
+
+
+/* loader */
+.loader {
+  @include loader();
 }
