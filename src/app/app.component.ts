@@ -1,7 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 
-import { SearchService } from './service/search.service';
+import { Subscription } from 'rxjs';
+
+import { CountryInterface } from './interfaces/country.interface';
 import { DeathsInterface } from './interfaces/deaths.interface';
+import { SearchService } from './service/search.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +12,10 @@ import { DeathsInterface } from './interfaces/deaths.interface';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  row;
   deathData: DeathsInterface[];
-  countryData: any;
+  countryData: CountryInterface[];
+
+  private subscription: Subscription = new Subscription();
 
   constructor(public searchService: SearchService) {
   }
@@ -22,15 +26,20 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   private initWorldData() {
-    this.searchService.getWorldData()
+    const world$ = this.searchService.getWorldData()
       .subscribe((data) => this.deathData = data);
+
+    this.subscription.add(world$);
   }
 
   private initCountryData() {
-    this.searchService.getCountryData()
+    const country$ = this.searchService.getCountryData()
       .subscribe( (data) => this.countryData = data);
+
+    this.subscription.add(country$);
   }
 }

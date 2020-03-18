@@ -1,50 +1,91 @@
-<div class="wrapper" *ngIf="!deathData && countryData; else loading">
+<div class="wrapper" *ngIf="deathData && countryData; else loading">
   <div class="statistic">
 
     <div class="total-case-box">
       <h2>Total Cases</h2>
-      <p id="total_cases">{{ deathData.total_cases }}</p>
+      <p>{{ deathData.total_cases }}</p>
     </div>
-    countryData {{ countryData.countries_stat[0] | json }}
-    <div class="box_wrapper">
+
+    <div class="box-wrapper">
+
       <div class="box">
         <h2>Total Death</h2>
-        <p id="total_death">{{ deathData.total_deaths }}</p>
+        <p>{{ deathData.total_deaths }}</p>
       </div>
 
       <div class="box">
         <h2>Total Recovery</h2>
-        <p id="total_recovered"> </p>
+        <p>{{ deathData.total_recovered }}</p>
       </div>
 
       <div class="box">
         <h2>New case</h2>
-        <p id="new_case"> </p>
+        <p>{{ deathData.new_cases }}</p>
       </div>
 
       <div class="box">
         <h2>New Death</h2>
-        <p id="new_death"> </p>
+        <p>{{ deathData.new_deaths }}</p>
       </div>
     </div>
   </div>
 
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia">
+  </mat-form-field>
 
-<!--    <ng-template>-->
-      <div class="search">
-        <input type="text" class="search">
-      </div>
-<!--    </ng-template>-->
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
 
-    <table id="countries_stat">
-      <tr>
-        <th>Country</th>
-        <th>Cases</th>
-        <th>Deaths</th>
-        <th>serious critical</th>
-        <th>total recovered</th>
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+
+      <!-- Progress Column -->
+      <ng-container matColumnDef="progress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
+        <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+
+      <!-- Color Column -->
+      <ng-container matColumnDef="color">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Color </th>
+        <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
       </tr>
     </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+
+
+<!--    <ng-template>-->
+<!--      <div class="search">-->
+<!--        <input type="text" class="search">-->
+<!--      </div>-->
+<!--    </ng-template>-->
+
+<!--    <table id="countries_stat">-->
+<!--      <tr>-->
+<!--        <th>Country</th>-->
+<!--        <th>Cases</th>-->
+<!--        <th>Deaths</th>-->
+<!--        <th>serious critical</th>-->
+<!--        <th>total recovered</th>-->
+<!--      </tr>-->
+<!--    </table>-->
   </div>
 
 <ng-template #loading>
