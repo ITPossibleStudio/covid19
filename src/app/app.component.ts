@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as environment from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   row;
+
 
   constructor() {
   }
@@ -29,8 +31,8 @@ export class AppComponent implements OnInit {
     fetch('https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php', {
       'method': 'GET',
       'headers': {
-        'x-rapidapi-host': 'coronavirus-monitor.p.rapidapi.com',
-        'x-rapidapi-key': '53009286a0mshdc8ec356f7aa205p1e0e80jsn5858f548ed53'
+        'x-rapidapi-host': environment.env.host,
+        'x-rapidapi-key': environment.env.key
       }
     })
       .then(response => response.json().then( data => {
@@ -49,8 +51,8 @@ export class AppComponent implements OnInit {
     fetch('https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php', {
       'method': 'GET',
       'headers': {
-        'x-rapidapi-host': 'coronavirus-monitor.p.rapidapi.com',
-        'x-rapidapi-key': '53009286a0mshdc8ec356f7aa205p1e0e80jsn5858f548ed53'
+        'x-rapidapi-host': environment.env.host,
+        'x-rapidapi-key': environment.env.key
       }
     })
       .then(response => response.json().then( (data) => {
