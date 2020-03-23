@@ -21,33 +21,17 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription = new Subscription();
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<CountryInterface>;
-
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(public searchService: SearchService) {}
+  constructor(public searchService: SearchService) {
+    this.initCountryData();
+  }
 
   ngOnInit(): void {
     this.initWorldData();
-    this.initCountryData();
-    this.initTable();
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
-  initTable() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -64,8 +48,6 @@ export class AppComponent implements OnInit, OnDestroy {
     const country$ = this.searchService.getCountryData()
       .subscribe( (data) => {
         this.countryData = data;
-        this.dataSource = new MatTableDataSource(this.countryData);
-        console.log('DATA SOURSE: ', this.dataSource);
       });
 
     this.subscription.add(country$);
