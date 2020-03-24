@@ -9,4 +9,5 @@ export interface CountryInterface {
   serious_critical: string;
   active_cases: string;
   total_cases_per_1m_population: string;
+  countries_stat?: any;
 }
