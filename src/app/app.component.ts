@@ -19,16 +19,6 @@ export interface CountryData {
   new_deaths: string;
 }
 
-/** Constants used to fill up our data base. */
-const COLORS: string[] = [
-  'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-  'aqua', 'blue', 'navy', 'black', 'gray'
-];
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
-
 /**
  * @title Data table with sorting, pagination, and filtering.
  */
@@ -41,6 +31,7 @@ const NAMES: string[] = [
 export class AppComponent implements OnInit, OnDestroy {
   deathData: DeathsInterface[];
   countryData: CountryInterface;
+  isDataLoaded = false;
 
   private subscription: Subscription = new Subscription();
 
@@ -52,19 +43,35 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(public searchService: SearchService) {
     this.initCountryData();
-
-    // Create 100 countries
-    const countries = Array.from({length: 100}, (_, k) => this.createNewCountry(k + 1));
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(countries);
   }
 
   ngOnInit(): void {
     this.initWorldData();
 
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    // this.dataSource.paginator = this.paginator; // todo fix 'paginator' error
+    // this.dataSource.sort = this.sort;
+  }
+
+  initDataSource(data) {
+    console.log('DATA: ', data);
+    // Create 100 countries
+    const count = data.length;
+    console.log(count); // todo use 'count' for generate countries array
+
+    const countries = Array.from({length: 100}, (_, k: number) => {
+      return this.createNewCountry(
+        k + 1,
+        data[k + 1].country_name,
+        data[k + 1].cases,
+        data[k + 1].deaths,
+        data[k + 1].new_cases,
+        data[k + 1].new_deaths,
+      );
+    });
+
+    // Assign the data to the data source for the table to render
+    this.dataSource = new MatTableDataSource(countries);
+
   }
 
   applyFilter(event: Event) {
@@ -77,18 +84,14 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   /** Builds and returns a new Country. */
-  createNewCountry(id: number): CountryData {
-    console.log('COUNTRY');
-    const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
+  createNewCountry(id: number, country: string, cases: string, deaths: string, newCases: string, newDeaths: string): CountryData {
     return {
       id: id.toString(),
-      country: name,
-      cases: Math.round(Math.random() * 100).toString(),
-      deaths: COLORS[Math.round(Math.random() * (COLORS.length - 1))],
-      new_cases: '1',
-      new_deaths: '0'
+      country,
+      cases,
+      deaths,
+      new_cases: newCases,
+      new_deaths: newDeaths
     };
   }
 
@@ -108,7 +111,8 @@ export class AppComponent implements OnInit, OnDestroy {
     const country$ = this.searchService.getCountryData()
       .subscribe( (data) => {
         this.countryData = data;
-        console.log(...this.countryData.countries_stat);
+        this.isDataLoaded = true;
+        this.initDataSource([...this.countryData.countries_stat]);
       });
 
     this.subscription.add(country$);

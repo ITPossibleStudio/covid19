@@ -1,9 +1,10 @@
-<div class="wrapper" *ngIf="deathData && countryData; else loading">
+<div class="wrapper" *ngIf="deathData && countryData && isDataLoaded; else loading">
   <div class="statistic">
 
     <div class="total-case-box">
       <h2>Total Cases</h2>
       <p>{{ deathData.total_cases }}</p>
+      <h5>updated at {{ deathData.statistic_taken_at | date:'medium' }}</h5>
     </div>
 
     <div class="box-wrapper">
@@ -38,7 +39,6 @@
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
 
-<!--      row {{ row }}-->
       <!-- ID Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
