@@ -67,7 +67,7 @@ table {
 }
 
 tr:first-child {
-  background-color: #37474f;
+  background-color: #bfb3b3;
   color: #fafafa;
   text-transform: uppercase;
 }
@@ -79,11 +79,9 @@ th{
 }
 tr:nth-child(even){
   background-color: #fafafa;
-
-
 }
 tr:nth-child(odd){
-  background-color: #424242;
+  background-color: #d5d1d1;
   color: #fafafa;
 }
 tr td{
