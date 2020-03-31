@@ -10,7 +10,7 @@ export class SearchService {
   constructor(private http: HttpClient) { }
 
   getWorldData(): Observable<any> {
-    return this.http.get<any>('https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php');
+    return this.http.get<any>('https://covidapi.info/api/v1/global');
   }
 
   getCountryData(): Observable<any> {

@@ -1,0 +1,67 @@
+@import "./../../assets/scss/mixins/mixin-loader";
+
+.wrapper {
+  width: 90%;
+  margin: 0 auto;
+
+  /*Styiling the table*/
+  table {
+    width: 100%;
+    padding: 15px 10px;
+    margin: 10px 0;
+    text-align: center;
+    border-spacing: 0;
+  }
+
+  tr:first-child {
+    background-color: #bfb3b3;
+    color: #fafafa;
+    text-transform: uppercase;
+  }
+  th{
+    padding: 15px 0;
+    border: none;
+    border-spacing: 0;
+
+  }
+  tr:nth-child(even){
+    background-color: #fafafa;
+  }
+  tr:nth-child(odd){
+    background-color: #d5d1d1;
+    color: #fafafa;
+  }
+  tr td{
+    padding: 15px 0;
+    text-align: left;
+    &:first-child {
+      text-align: center;
+    }
+  }
+}
+
+/* loader */
+.loader {
+  @include loader();
+}
+
+@media all and (max-width: 768px) {
+  .wrapper {
+
+    .mat-header-cell {
+      font-size: 10px;
+      width: 50px;
+      max-width: 50px;
+    }
+    .mat-cell {
+      font-size: 11px;
+    }
+    th.mat-header-cell:first-of-type {
+      padding-left: 14px;
+    }
+    .mat-form-field {
+      width: 100%;
+    }
+
+  }
+}

@@ -2,16 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
-import { MatTableModule } from '@angular/material/table';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatInputModule } from '@angular/material/input';
-
 import { AppComponent } from './app.component';
 import { HeaderInterceptor } from './interceptor/header.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { DataTableModule } from './data-table/data-table.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,12 +18,9 @@ import { environment } from '../environments/environment';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatPaginatorModule,
-    MatInputModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
-
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    DataTableModule,
+    SharedModule
   ],
   providers: [
     {
