@@ -17,6 +17,7 @@ export interface CountryData {
   deaths: string;
   new_cases: string;
   new_deaths: string;
+  recovered: string;
 }
 
 /**
@@ -29,13 +30,13 @@ export interface CountryData {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  deathData: DeathsInterface[];
+  deathData: DeathsInterface;
   countryData: CountryInterface;
   isDataLoaded = false;
 
   private subscription: Subscription = new Subscription();
 
-  displayedColumns: string[] = ['id', 'country', 'cases', 'deaths', 'new_cases', 'new_deaths'];
+  displayedColumns: string[] = ['id', 'country', 'cases', 'deaths', 'new_cases', 'new_deaths', 'recovered'];
   dataSource: MatTableDataSource<CountryData>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -66,12 +67,16 @@ export class AppComponent implements OnInit, OnDestroy {
         data[k + 1].deaths,
         data[k + 1].new_cases,
         data[k + 1].new_deaths,
+        data[k + 1].total_recovered
       );
     });
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(countries);
 
+    this.dataSource.paginator = this.paginator; // todo fix 'paginator' error
+    this.dataSource.sort = this.sort;
+    console.log('dS: ', this.dataSource, this.paginator);
   }
 
   applyFilter(event: Event) {
@@ -84,14 +89,17 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   /** Builds and returns a new Country. */
-  createNewCountry(id: number, country: string, cases: string, deaths: string, newCases: string, newDeaths: string): CountryData {
+  createNewCountry(
+    id: number, country: string, cases: string, deaths: string, newCases: string, newDeaths: string, recovered: string
+  ): CountryData {
     return {
       id: id.toString(),
       country,
       cases,
       deaths,
       new_cases: newCases,
-      new_deaths: newDeaths
+      new_deaths: newDeaths,
+      recovered
     };
   }
 

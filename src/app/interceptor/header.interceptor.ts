@@ -17,8 +17,8 @@ export class HeaderInterceptor implements HttpInterceptor {
 
     request = request.clone({
       setHeaders: {
-        'x-rapidapi-host': environment.env.host,
-        'x-rapidapi-key': environment.env.key
+        'x-rapidapi-host': environment.environment.host,
+        'x-rapidapi-key': environment.environment.key
       }
     });
     return next.handle(request);
