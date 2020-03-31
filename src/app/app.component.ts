@@ -30,7 +30,7 @@ export interface CountryData {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  deathData: DeathsInterface[];
+  deathData: DeathsInterface;
   countryData: CountryInterface;
   isDataLoaded = false;
 
