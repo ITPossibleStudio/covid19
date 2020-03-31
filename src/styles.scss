@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/scss/mixins/mixin-scroll";
+
 @font-face {
   font-family: 'Ubuntu-Bold';
   src: url('./assets/fonts/Ubuntu-Bold.ttf');
@@ -35,4 +37,13 @@
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html {
+  height: 300px;
+  overflow: scroll;
+  @include scroll();
+}
+body {
+  margin: 0;
+  font-family: Ubuntu-Medium, "Helvetica Neue", sans-serif;
+
+}
