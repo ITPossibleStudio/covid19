@@ -9,10 +9,12 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { DataTableModule } from './data-table/data-table.module';
 import { SharedModule } from './shared/shared.module';
+import { WhitespacePipe } from './pipe/whitespace.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WhitespacePipe
   ],
   imports: [
     BrowserModule,

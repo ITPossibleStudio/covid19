@@ -3,7 +3,7 @@
 
     <div class="total-case-box">
       <h2>Total Cases</h2>
-      <p>{{ deathData.result.confirmed }}</p>
+      <p>{{ deathData.result.confirmed | whitespace }}</p>
       <h5>updated at {{ deathData.date | date:'medium' }}</h5>
     </div>
 
@@ -11,12 +11,12 @@
 
       <div class="box">
         <h2>Total Death</h2>
-        <p>{{ deathData.result.deaths }}</p>
+        <p>{{ deathData.result.deaths | whitespace }}</p>
       </div>
 
       <div class="box">
         <h2>Total Recovery</h2>
-        <p>{{ deathData.result.recovered }}</p>
+        <p>{{ deathData.result.recovered | whitespace }}</p>
       </div>
 
     </div>
