@@ -1,8 +1,6 @@
+import { DeathResultInterface } from './death-result.interface';
+
 export interface DeathsInterface {
-  total_cases: string;
-  total_deaths: string;
-  total_recovered: string;
-  new_cases: string;
-  new_deaths: string;
-  statistic_taken_at: string;
+  date: string;
+  result: DeathResultInterface;
 }
