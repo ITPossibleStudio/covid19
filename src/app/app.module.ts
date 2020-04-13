@@ -10,11 +10,13 @@ import { environment } from '../environments/environment';
 import { DataTableModule } from './data-table/data-table.module';
 import { SharedModule } from './shared/shared.module';
 import { WhitespacePipe } from './pipe/whitespace.pipe';
+import { D3ChartsComponent } from './d3-charts/d3-charts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WhitespacePipe
+    WhitespacePipe,
+    D3ChartsComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,9 @@ import { WhitespacePipe } from './pipe/whitespace.pipe';
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    D3ChartsComponent
+  ]
 })
 export class AppModule { }
