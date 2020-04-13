@@ -27,6 +27,7 @@ export class D3ChartsComponent implements OnInit  {
     const radius: number = Math.min(width, height) / 2;
 
     const color: any = d3.scaleOrdinal(d3.schemeCategory10);
+    const newColor = ['#5ea758', '#d43403', '#000000'];
     console.log(color);
 
     const element: any = this.chartContainer.nativeElement;
@@ -56,7 +57,7 @@ export class D3ChartsComponent implements OnInit  {
       .data(pie(dataset))
       .enter().append('path')
       .attr('d', arc)
-      .attr('fill', (d, i) => {
+      .attr('fill', (d: any, i) => {
         console.log('chart: ', d.data);
         return color(d.data.label);
       });
