@@ -14,16 +14,16 @@
         <p>{{ deathData.result.deaths | whitespace }}</p>
       </div>
 
+      <div class="chart">
+        <app-d3-charts [deathData]="deathData.result"></app-d3-charts>
+      </div>
+
       <div class="box">
         <h2>Total Recovery</h2>
         <p>{{ deathData.result.recovered | whitespace }}</p>
       </div>
 
     </div>
-  </div>
-
-  <div class="chart">
-    <app-d3-charts></app-d3-charts>
   </div>
 
   </div>

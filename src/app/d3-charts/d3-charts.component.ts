@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import {Component, ViewChild, ElementRef, OnInit, Input} from '@angular/core';
 import * as d3 from 'd3';
 
 @Component({
@@ -9,26 +9,27 @@ import * as d3 from 'd3';
 export class D3ChartsComponent implements OnInit  {
   @ViewChild('chart', { static: true }) private chartContainer: ElementRef;
 
+  @Input() deathData: any;
+
   constructor() {}
 
   ngOnInit() {
     this.renderPiechart();
+    console.log('deathData: ', this.deathData);
   }
 
   renderPiechart() {
     const dataset: any = [
-      { label: 'death', count: 10 },
-      { label: 'recovery', count: 20 },
-      { label: 'active', count: 30 }
+      { label: 'death', count: this.deathData.deaths },
+      { label: 'recovery', count: this.deathData.recovered },
+      { label: 'active', count: (this.deathData.confirmed - this.deathData.deaths - this.deathData.recovered) }
     ];
 
-    const width = 360;
-    const height = 360;
+    const width = 100;
+    const height = 100;
     const radius: number = Math.min(width, height) / 2;
 
-    const color: any = d3.scaleOrdinal(d3.schemeCategory10);
-    const newColor = ['#5ea758', '#d43403', '#000000'];
-    console.log(color);
+    const color: any = d3.scaleOrdinal(d3.schemeCategory10).range(['#000', '#5ea758', '#d43403']);
 
     const element: any = this.chartContainer.nativeElement;
 
