@@ -16,14 +16,15 @@ import { CountryInterface } from '../interfaces/country.interface';
   styleUrls: ['./data-table.component.scss']
 })
 export class DataTableComponent implements OnInit, OnDestroy {
+
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   isDataLoaded = false;
   countryData: CountryInterface;
 
   displayedColumns: string[] = ['id', 'country', 'cases', 'deaths', 'new_cases', 'new_deaths', 'recovered'];
   dataSource: MatTableDataSource<CountryData>;
-
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   private subscription: Subscription = new Subscription();
 
@@ -52,8 +53,11 @@ export class DataTableComponent implements OnInit, OnDestroy {
     this.dataSource = new MatTableDataSource(countries);
 
     this.dataSource.paginator = this.paginator; // todo fix 'paginator' error
-    this.dataSource.sort = this.sort;
-    console.log('dS: ', this.dataSource, this.paginator);
+
+    if (this.dataSource) {
+      console.log('dataSource', this.dataSource);
+      this.dataSource.sort = this.sort;
+    }
   }
 
   applyFilter(event: Event) {
