@@ -52,3 +52,5 @@ Thumbs.db
 .firebase/
 firebase.json
 .firebaserc
+.browserslistrc
+tsconfig.base.json
