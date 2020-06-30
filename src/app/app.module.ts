@@ -12,6 +12,8 @@ import { SharedModule } from './shared/shared.module';
 import { WhitespacePipe } from './pipe/whitespace.pipe';
 import { D3ChartsComponent } from './d3-charts/d3-charts.component';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,8 @@ import { D3ChartsComponent } from './d3-charts/d3-charts.component';
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     DataTableModule,
-    SharedModule
+    SharedModule,
+    NgxChartsModule
   ],
   providers: [
     {
