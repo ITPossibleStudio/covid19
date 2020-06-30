@@ -13,60 +13,43 @@ import { SearchService } from './service/search.service';
 export class AppComponent implements OnInit, OnDestroy {
   deathData: DeathsInterface;
 
-  view: any[] = [600, 400];
+  single: any[];
+  view: any[] = [700, 400];
 
-  // options for the chart
-  showXAxis = true;
-  showYAxis = true;
-  gradient = false;
-  showLegend = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Country';
-  showYAxisLabel = true;
-  yAxisLabel = 'Sales';
-  timeline = true;
+  // options
+  gradient: boolean = true;
+  showLegend: boolean = true;
+  showLabels: boolean = true;
+  isDoughnut: boolean = false;
+  legendPosition: string = 'below';
 
   colorScheme = {
-    domain: ['#9370DB', '#87CEFA', '#FA8072', '#FF7F50', '#90EE90', '#9370DB']
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  // pie labels
-  showLabels = true;
-
-
-  public single = [
-    {
-      name: 'China',
-      value: 2243772
-    },
-    {
-      name: 'USA',
-      value: 1126000
-    },
-    {
-      name: 'Norway',
-      value: 296215
-    },
-    {
-      name: 'Japan',
-      value: 257363
-    },
-    {
-      name: 'Germany',
-      value: 196750
-    },
-    {
-      name: 'France',
-      value: 204617
-    }
-  ];
-
-  private subscription: Subscription = new Subscription();
-
-  constructor(public searchService: SearchService) {}
 
   ngOnInit(): void {
     this.initWorldData();
+  }
+
+
+  onSelect(data): void {
+    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+  }
+
+  onActivate(data): void {
+    console.log('Activate', JSON.parse(JSON.stringify(data)));
+  }
+
+  onDeactivate(data): void {
+    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+  }
+
+
+  private subscription: Subscription = new Subscription();
+
+  constructor(public searchService: SearchService) {
+    Object.assign(this, { single: this.single });
   }
 
   ngOnDestroy(): void {
