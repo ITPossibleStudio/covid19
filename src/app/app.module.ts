@@ -11,6 +11,7 @@ import { DataTableModule } from './data-table/data-table.module';
 import { SharedModule } from './shared/shared.module';
 import { WhitespacePipe } from './pipe/whitespace.pipe';
 import { D3ChartsComponent } from './d3-charts/d3-charts.component';
+
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({

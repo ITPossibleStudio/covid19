@@ -30,7 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
     domain: ['#9370DB', '#87CEFA', '#FA8072', '#FF7F50', '#90EE90', '#9370DB']
   };
 
-  // pie
+  // pie labels
   showLabels = true;
 
 
